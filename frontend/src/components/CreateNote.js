@@ -1,14 +1,7 @@
 import { useState } from 'react'
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
-import {
-  Button,
-  FormControl,
-  Box,
-  Input,
-  TextField,
-  Stack,
-} from '@mui/material'
+import { Button, FormControl, Box, Input, Stack } from '@mui/material'
 // local import
 import Wrapper from '../styles/CreateNote'
 
