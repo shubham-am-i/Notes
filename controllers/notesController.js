@@ -8,7 +8,6 @@ import ErrorResponse from '../utils/errorResponse.js'
 export const createNote = async (req, res) => {
   const { title, body } = req.body
   if (!body) {
-    console.log('inside')
     throw new ErrorResponse('Please provide all values', 400)
   }
 
