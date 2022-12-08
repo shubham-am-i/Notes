@@ -44,6 +44,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'CLEAR_VALUES' })
   }
 
+  const handleChange = ({ name, value }) => {
+    dispatch({ type: 'HANDLE_CHANGE', payload: { name, value } })
+  }
+
   const createNote = async () => {
     try {
       const { title, body, pinned } = state
@@ -79,9 +83,30 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'SET_EDIT_NOTE', payload: { id } })
   }
 
-  const handleChange = ({ name, value }) => {
-    dispatch({ type: 'HANDLE_CHANGE', payload: { name, value } })
+  const editNote = async () => {
+    try {
+      const { title, body, pinned, editNoteId } = state
+      await axios.patch(
+        `/api/v1/notes/${editNoteId}`,
+        {
+          title,
+          body,
+          pinned,
+        },
+        config
+      )
+      dispatch({ type: 'EDIT_NOTE_SUCCESS' })
+      getNotes()
+    } catch (error) {
+      dispatch({
+        type: 'EDIT_NOTE_ERROR',
+        payload: { msg: error.response.data.msg },
+      })
+    }
+    clearValues()
+    clearAlert()
   }
+
   return (
     <AppContext.Provider
       value={{
@@ -92,6 +117,7 @@ const AppProvider = ({ children }) => {
         setEditNote,
         handleChange,
         clearValues,
+        editNote,
       }}
     >
       {children}

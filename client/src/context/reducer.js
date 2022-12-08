@@ -24,10 +24,20 @@ const reducer = (state, { type, payload }) => {
         body: '',
         pinned: false,
         editNoteId: '',
+        isEditing: false,
       }
       return {
         ...state,
         ...initialState,
+      }
+    }
+
+    case 'HANDLE_CHANGE': {
+      const { name, value } = payload
+      return {
+        ...state,
+        page: 1,
+        [name]: value,
       }
     }
 
@@ -67,12 +77,22 @@ const reducer = (state, { type, payload }) => {
       }
     }
 
-    case 'HANDLE_CHANGE': {
-      const { name, value } = payload
+    case 'EDIT_NOTE_SUCCESS': {
       return {
         ...state,
-        page: 1,
-        [name]: value,
+        showAlert: true,
+        alertType: 'success',
+        alertText: 'Note Updated!',
+      }
+    }
+
+    case 'EDIT_NOTE_ERROR': {
+      const { msg } = payload
+      return {
+        ...state,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: msg,
       }
     }
 

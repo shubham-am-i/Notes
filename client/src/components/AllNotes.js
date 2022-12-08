@@ -20,7 +20,7 @@ const AllNotes = () => {
     // console.log(e.target.parentElement.nodeName)
     if (e.target.parentElement.textContent === 'Save Changes') {
       editNote()
-      setOpen(false)
+      setTimeout(() => setOpen(false), 3000)
     }
     if (e.target.parentElement.nodeName === 'DIV') return
     clearValues()
