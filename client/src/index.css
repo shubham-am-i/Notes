@@ -32,3 +32,21 @@ code {
   color: #0f5132;
   background: #d1e7dd;
 }
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 4rem;
+  height: 4rem;
+  border: 5px solid grey;
+  border-radius: 50%;
+  border-top-color: lightgrey;
+  animation: spinner 2s linear infinite;
+}
+.loading-center {
+  margin: 0 auto;
+}

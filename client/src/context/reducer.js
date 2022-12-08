@@ -26,6 +26,20 @@ const reducer = (state, { type, payload }) => {
       }
     }
 
+    case 'GET_NOTES_BEGIN': {
+      return { ...state, isLoading: true }
+    }
+
+    case 'GET_NOTES_SUCCESS': {
+      const { notes, totalNotes } = payload
+      return {
+        ...state,
+        isLoading: false,
+        notes,
+        totalNotes,
+      }
+    }
+
     default:
       throw new Error(`no such action : ${type}`)
   }

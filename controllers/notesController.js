@@ -15,3 +15,14 @@ export const createNote = async (req, res) => {
 
   res.status(201).json({ note })
 }
+
+// @desc    Get All Notes
+// @route   GET /api/v1/notes/
+// @access  Public
+export const getAllNotes = async (req, res) => {
+  const notes = await Note.find({})
+  res.status(200).json({
+    totalNotes: notes.length,
+    notes,
+  })
+}
