@@ -18,6 +18,19 @@ const reducer = (state, { type, payload }) => {
       }
     }
 
+    case 'CLEAR_VALUES': {
+      const initialState = {
+        title: '',
+        body: '',
+        pinned: false,
+        editNoteId: '',
+      }
+      return {
+        ...state,
+        ...initialState,
+      }
+    }
+
     case 'CREATE_NOTE_SUCCESS': {
       return {
         ...state,
@@ -46,10 +59,20 @@ const reducer = (state, { type, payload }) => {
       const { _id, title, body, pinned } = note
       return {
         ...state,
+        isEditing: true,
         editNoteId: _id,
         title,
         body,
         pinned,
+      }
+    }
+
+    case 'HANDLE_CHANGE': {
+      const { name, value } = payload
+      return {
+        ...state,
+        page: 1,
+        [name]: value,
       }
     }
 

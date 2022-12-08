@@ -4,16 +4,28 @@ import { RxDrawingPinFilled } from 'react-icons/rx'
 import { Paper, Stack, Typography, Button } from '@mui/material'
 import { useAppContext } from '../context/appContext'
 import Loading from './Loading'
+import CreateNote from './CreateNote'
 import Wrapper from '../styles/AllNotes'
 
 const AllNotes = () => {
   const [open, setOpen] = React.useState(false)
-  const { getNotes, isLoading, notes, totalNotes, setEditNote } = useAppContext()
+  const { getNotes, isLoading, editNote, notes, totalNotes, setEditNote, clearValues } =
+    useAppContext()
   const handleOpen = (id) => {
     setEditNote(id)
     setOpen(true)
   }
-  const handleClose = () => setOpen(false)
+  const handleClose = (e) => {
+    // console.dir(e.target.parentElement)
+    // console.log(e.target.parentElement.nodeName)
+    if (e.target.parentElement.textContent === 'Save Changes') {
+      editNote()
+      setOpen()
+    }
+    if (e.target.parentElement.nodeName === 'DIV') return
+    clearValues()
+    setOpen(false)
+  }
 
   useEffect(() => {
     getNotes()
@@ -44,7 +56,7 @@ const AllNotes = () => {
       {open && (
         <aside className='modal-container' onClick={handleClose}>
           <div className='modal'>
-            <Button onClick={handleClose}>Save Changes</Button>
+            <CreateNote modal='modal' handleClose={handleClose} />
           </div>
         </aside>
       )}

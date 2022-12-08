@@ -14,6 +14,7 @@ const initialState = {
   pinned: false,
   notes: [],
   totalNotes: 0,
+  page: 1,
 }
 
 // config headers for post request
@@ -39,10 +40,16 @@ const AppProvider = ({ children }) => {
     }, 3000)
   }
 
-  const createNote = async (note) => {
+  const clearValues = () => {
+    dispatch({ type: 'CLEAR_VALUES' })
+  }
+
+  const createNote = async () => {
     try {
-      const response = await axios.post('/api/v1/notes', note, config)
+      const { title, body, pinned } = state
+      await axios.post('/api/v1/notes', { title, body, pinned }, config)
       dispatch({ type: 'CREATE_NOTE_SUCCESS' })
+      clearValues() // function call to set default for title, body & pinned
       getNotes()
     } catch (error) {
       dispatch({ type: 'DISPLAY_ALERT', payload: { msg: error.response.data.msg } })
@@ -71,6 +78,10 @@ const AppProvider = ({ children }) => {
   const setEditNote = (id) => {
     dispatch({ type: 'SET_EDIT_NOTE', payload: { id } })
   }
+
+  const handleChange = ({ name, value }) => {
+    dispatch({ type: 'HANDLE_CHANGE', payload: { name, value } })
+  }
   return (
     <AppContext.Provider
       value={{
@@ -79,6 +90,8 @@ const AppProvider = ({ children }) => {
         createNote,
         displayAlert,
         setEditNote,
+        handleChange,
+        clearValues,
       }}
     >
       {children}

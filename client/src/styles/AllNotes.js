@@ -12,6 +12,7 @@ const Wrapper = styled.section`
     padding: 15px;
     width: 280px;
     overflow: hidden;
+    border-radius: 6px;
   }
   .modal-container {
     position: fixed;
@@ -24,15 +25,14 @@ const Wrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 1s linear;
   }
 
   .modal {
     background: #fff;
     width: 80vw;
-    max-width: 400px;
-    border-radius: 3px;
-    padding: 2rem 1rem;
+    transform: translateY(-10%);
+    max-width: 500px;
+    border-radius: 8px;
     text-align: center;
   }
 `

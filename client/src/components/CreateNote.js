@@ -8,54 +8,50 @@ import Alert from './Alert'
 import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
 
-const initialState = {
-  title: '',
-  body: '',
-  pinned: false,
-}
-const CreateNote = () => {
-  const [values, setValues] = useState(initialState)
-  const { createNote, showAlert, displayAlert } = useAppContext()
+const CreateNote = ({ modal, handleClose }) => {
+  const { createNote, showAlert, handleChange, title, body, pinned, isEditing } = useAppContext()
 
-  const handleChange = (e) => {
-    // handle input values
-    setValues({ ...values, [e.target.name]: e.target.value })
-  }
   const handlePinned = (e) => {
     // handle pinned note
-    setValues({ ...values, pinned: !values.pinned })
+    const name = 'pinned'
+    const value = !pinned
+    handleChange({ name, value })
+  }
+
+  const handleNoteInput = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    handleChange({ name, value })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const newNote = {
-      title: values.title,
-      body: values.body,
-      pinned: values.pinned,
+    if (isEditing) {
+      handleClose()
+      return
     }
-    createNote(newNote)
-    setValues(initialState)
+    createNote()
   }
   return (
     <Wrapper>
       <form onSubmit={handleSubmit}>
-        <FormControl sx={{ boxShadow: 3 }} className='form'>
+        <FormControl sx={{ boxShadow: 3 }} className={`form form-${modal}`}>
           <Stack direction='row'>
             <Input
               name='title'
               placeholder='Title'
               disableUnderline={true}
               fullWidth
-              value={values.title}
-              onChange={handleChange}
+              value={title}
+              onChange={handleNoteInput}
             />
 
             <Box className='pin-box'>
-              {values.pinned ? (
-                <RxDrawingPinFilled size={20} onClick={handlePinned} />
+              {pinned ? (
+                <RxDrawingPinFilled size={20} name='pinned' onClick={handlePinned} />
               ) : (
-                <VscPinned size={20} onClick={handlePinned} />
+                <VscPinned size={20} name='pinned' onClick={handlePinned} />
               )}
             </Box>
           </Stack>
@@ -64,12 +60,12 @@ const CreateNote = () => {
             placeholder='Take a note...'
             disableUnderline={true}
             multiline
-            value={values.body}
-            onChange={handleChange}
+            value={body}
+            onChange={handleNoteInput}
           />
 
           <Box className='button-container'>
-            <Button type='submit'>Create Note</Button>
+            <Button type='submit'>{isEditing && modal ? 'Save Changes' : 'Create Note'}</Button>
           </Box>
           {showAlert && <Alert />}
         </FormControl>

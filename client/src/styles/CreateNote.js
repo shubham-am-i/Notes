@@ -1,16 +1,18 @@
 import styled from '@emotion/styled'
 
 const Wrapper = styled.section`
-  margin-top: 20px;
   .form {
     position: relative;
-    width: 40%;
+    width: 42%;
     margin: 0 auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
+    border-radius: 6px;
     /* todo - background color */
+  }
+  .form-modal {
+    width: 100%;
   }
   Input {
     margin-bottom: 10px;
