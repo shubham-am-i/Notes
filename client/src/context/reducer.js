@@ -5,6 +5,7 @@ const reducer = (state, { type, payload }) => {
       return {
         ...state,
         showAlert: true,
+        alertType: 'danger',
         alertText: msg,
       }
 
@@ -27,7 +28,7 @@ const reducer = (state, { type, payload }) => {
     }
 
     case 'GET_NOTES_BEGIN': {
-      return { ...state, isLoading: true }
+      return { ...state, isLoading: false }
     }
 
     case 'GET_NOTES_SUCCESS': {
@@ -37,6 +38,18 @@ const reducer = (state, { type, payload }) => {
         isLoading: false,
         notes,
         totalNotes,
+      }
+    }
+
+    case 'SET_EDIT_NOTE': {
+      const note = state.notes.find((note) => note._id === payload.id)
+      const { _id, title, body, pinned } = note
+      return {
+        ...state,
+        editNoteId: _id,
+        title,
+        body,
+        pinned,
       }
     }
 

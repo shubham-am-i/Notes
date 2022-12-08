@@ -7,6 +7,10 @@ const initialState = {
   showAlert: false,
   alertType: '',
   alertText: '',
+  isEditing: false,
+  editNoteId: '',
+  title: '',
+  body: '',
   pinned: false,
   notes: [],
   totalNotes: 0,
@@ -24,6 +28,11 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  const displayAlert = () => {
+    dispatch({ type: 'DISPLAY_ALERT' })
+    clearAlert()
+  }
+
   const clearAlert = () => {
     setTimeout(() => {
       dispatch({ type: 'CLEAR_ALERT' })
@@ -32,17 +41,18 @@ const AppProvider = ({ children }) => {
 
   const createNote = async (note) => {
     try {
-      await axios.post('/api/v1/notes', note, config)
+      const response = await axios.post('/api/v1/notes', note, config)
       dispatch({ type: 'CREATE_NOTE_SUCCESS' })
+      getNotes()
     } catch (error) {
-      dispatch({ type: 'DISPLAY_ALERT', payload: { msg: error.payload.data.msg } })
+      dispatch({ type: 'DISPLAY_ALERT', payload: { msg: error.response.data.msg } })
     }
     clearAlert()
   }
 
   const getNotes = async () => {
-    dispatch({ type: 'GET_NOTES_BEGIN' })
     try {
+      dispatch({ type: 'GET_NOTES_BEGIN' })
       const { data } = await axios.get('/api/v1/notes')
       const { notes, totalNotes } = data
       dispatch({
@@ -57,12 +67,18 @@ const AppProvider = ({ children }) => {
     }
     clearAlert()
   }
+
+  const setEditNote = (id) => {
+    dispatch({ type: 'SET_EDIT_NOTE', payload: { id } })
+  }
   return (
     <AppContext.Provider
       value={{
         ...state,
         getNotes,
         createNote,
+        displayAlert,
+        setEditNote,
       }}
     >
       {children}

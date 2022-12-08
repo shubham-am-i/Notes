@@ -8,7 +8,7 @@ import ErrorResponse from '../utils/errorResponse.js'
 export const createNote = async (req, res) => {
   const { title, body } = req.body
   if (!body) {
-    throw new ErrorResponse('Please provide all values', 400)
+    throw new ErrorResponse('Atleast provide a description', 400)
   }
 
   const note = await Note.create(req.body)

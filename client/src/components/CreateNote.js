@@ -8,13 +8,14 @@ import Alert from './Alert'
 import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
 
+const initialState = {
+  title: '',
+  body: '',
+  pinned: false,
+}
 const CreateNote = () => {
-  const [values, setValues] = useState({
-    title: '',
-    body: '',
-    pinned: false,
-  })
-  const { createNote, showAlert } = useAppContext()
+  const [values, setValues] = useState(initialState)
+  const { createNote, showAlert, displayAlert } = useAppContext()
 
   const handleChange = (e) => {
     // handle input values
@@ -27,12 +28,14 @@ const CreateNote = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     const newNote = {
       title: values.title,
       body: values.body,
       pinned: values.pinned,
     }
     createNote(newNote)
+    setValues(initialState)
   }
   return (
     <Wrapper>
@@ -44,6 +47,7 @@ const CreateNote = () => {
               placeholder='Title'
               disableUnderline={true}
               fullWidth
+              value={values.title}
               onChange={handleChange}
             />
 
@@ -60,6 +64,7 @@ const CreateNote = () => {
             placeholder='Take a note...'
             disableUnderline={true}
             multiline
+            value={values.body}
             onChange={handleChange}
           />
 
