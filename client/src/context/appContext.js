@@ -48,12 +48,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'HANDLE_CHANGE', payload: { name, value } })
   }
 
-  const createNote = async () => {
+  const createNote = async (note) => {
     try {
-      const { title, body, pinned } = state
-      await axios.post('/api/v1/notes', { title, body, pinned }, config)
+      await axios.post('/api/v1/notes', note, config)
       dispatch({ type: 'CREATE_NOTE_SUCCESS' })
-      clearValues() // function call to set default for title, body & pinned
       getNotes()
     } catch (error) {
       dispatch({ type: 'DISPLAY_ALERT', payload: { msg: error.response.data.msg } })

@@ -1,18 +1,45 @@
 import styled from '@emotion/styled'
 
 const Wrapper = styled.section`
-  margin-top: 50px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   .notes-container {
     flex-direction: row;
     flex-wrap: wrap;
-    row-gap: 1.2em;
-    column-gap: 1.2em;
+    row-gap: 1.5em;
+    column-gap: 1.5em;
   }
   .paper {
-    padding: 15px;
-    width: 280px;
+    position: relative;
+    padding: 15px !important;
+    min-width: 250px;
+    max-width: 310px;
+    height: fit-content;
+    max-height: 260px;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 7px;
+    box-shadow: none;
+    border: 0.95px solid lightgrey;
+  }
+  .title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .body {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    color: #808080;
+  }
+  .pin-box {
+    position: absolute;
+    right: 10px;
+    top: 10px;
   }
   .modal-container {
     position: fixed;
@@ -30,7 +57,7 @@ const Wrapper = styled.section`
   .modal {
     background: #fff;
     width: 80vw;
-    transform: translateY(-10%);
+    /* transform: translateY(-80%); */
     max-width: 500px;
     border-radius: 8px;
     text-align: center;
