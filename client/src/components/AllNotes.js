@@ -20,7 +20,7 @@ const AllNotes = () => {
     // console.log(e.target.parentElement.nodeName)
     if (e.target.parentElement.textContent === 'Save Changes') {
       editNote()
-      setOpen()
+      setOpen(false)
     }
     if (e.target.parentElement.nodeName === 'DIV') return
     clearValues()
