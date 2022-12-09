@@ -55,12 +55,13 @@ const reducer = (state, { type, payload }) => {
     }
 
     case 'GET_NOTES_SUCCESS': {
-      const { notes, totalNotes } = payload
+      const { notes, totalNotes, numOfPages } = payload
       return {
         ...state,
         isLoading: false,
         notes,
         totalNotes,
+        numOfPages,
       }
     }
 
@@ -111,6 +112,13 @@ const reducer = (state, { type, payload }) => {
         showAlert: true,
         alertType: 'danger',
         alertText: msg,
+      }
+    }
+
+    case 'CHANGE_PAGE': {
+      return {
+        ...state,
+        page: payload.page,
       }
     }
 

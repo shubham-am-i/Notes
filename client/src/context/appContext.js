@@ -15,6 +15,7 @@ const initialState = {
   notes: [],
   totalNotes: 0,
   page: 1,
+  numOfPages: 1,
 }
 
 // config headers for post request
@@ -60,15 +61,17 @@ const AppProvider = ({ children }) => {
   }
 
   const getNotes = async () => {
+    const { page } = state
     try {
       dispatch({ type: 'GET_NOTES_BEGIN' })
-      const { data } = await axios.get('/api/v1/notes')
-      const { notes, totalNotes } = data
+      const { data } = await axios.get(`/api/v1/notes?page=${page}`)
+      const { notes, totalNotes, numOfPages } = data
       dispatch({
         type: 'GET_NOTES_SUCCESS',
         payload: {
           notes,
           totalNotes,
+          numOfPages,
         },
       })
     } catch (error) {
@@ -93,8 +96,8 @@ const AppProvider = ({ children }) => {
         },
         config
       )
-      dispatch({ type: 'EDIT_NOTE_SUCCESS' })
       getNotes()
+      dispatch({ type: 'EDIT_NOTE_SUCCESS' })
     } catch (error) {
       dispatch({
         type: 'EDIT_NOTE_ERROR',
@@ -117,6 +120,11 @@ const AppProvider = ({ children }) => {
     clearAlert()
   }
 
+  const changePage = (page) => {
+    dispatch({ type: 'CHANGE_PAGE', payload: { page } })
+    getNotes()
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -129,6 +137,7 @@ const AppProvider = ({ children }) => {
         clearValues,
         editNote,
         deleteNote,
+        changePage,
       }}
     >
       {children}

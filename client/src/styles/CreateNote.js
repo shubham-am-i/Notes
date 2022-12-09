@@ -13,6 +13,7 @@ const Wrapper = styled.section`
   }
   .form-modal {
     width: 100%;
+    height: 100%;
   }
   Input {
     margin-bottom: 10px;

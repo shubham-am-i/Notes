@@ -3,6 +3,11 @@ import styled from '@emotion/styled'
 const Wrapper = styled.section`
   margin-top: 40px;
   margin-bottom: 40px;
+  padding: 0 50px;
+  .heading-title {
+    margin-left: 13px;
+    margin-bottom: 8px;
+  }
   .notes-container {
     flex-direction: row;
     flex-wrap: wrap;
@@ -57,7 +62,7 @@ const Wrapper = styled.section`
   .modal {
     background: #fff;
     width: 80vw;
-    /* transform: translateY(-80%); */
+    margin-top: -250px;
     max-width: 500px;
     border-radius: 8px;
     text-align: center;

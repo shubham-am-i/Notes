@@ -3,6 +3,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  /* colors */
+  --primary-100: #dce5e6;
+  --primary-500: #a4a7a7;
+
+  /* rest of the colors */
+  --black: #222;
+  --white: #fff;
+
+  --borderRadius: 0.25rem;
+  --letterSpacing: 1px;
+  --transition: 0.3s ease-in-out all;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',

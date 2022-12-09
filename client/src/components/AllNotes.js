@@ -5,10 +5,12 @@ import { Box, Paper, Stack, Typography } from '@mui/material'
 import { useAppContext } from '../context/appContext'
 import Wrapper from '../styles/AllNotes'
 import EditNote from './EditNote'
+import PageBtnContainer from './PageBtnContainer'
 
 const AllNotes = () => {
   const [open, setOpen] = React.useState(false)
-  const { getNotes, editNote, notes, totalNotes, setEditNote, clearValues } = useAppContext()
+  const { getNotes, editNote, notes, totalNotes, setEditNote, clearValues, numOfPages, page } =
+    useAppContext()
 
   const handleOpen = (id) => {
     setEditNote(id)
@@ -28,7 +30,7 @@ const AllNotes = () => {
 
   useEffect(() => {
     getNotes()
-  }, [])
+  }, [page])
 
   if (totalNotes === 0) {
     return (
@@ -40,7 +42,9 @@ const AllNotes = () => {
 
   return (
     <Wrapper>
-      <Typography variant='body1'>Notes</Typography>
+      <Typography variant='body1' className='heading-title'>
+        Notes
+      </Typography>
       <Stack className='notes-container'>
         {notes.map((note) => (
           <Paper className='paper' onClick={() => handleOpen(note._id)}>
@@ -48,7 +52,7 @@ const AllNotes = () => {
               {note.pinned ? <RxDrawingPinFilled size={20} /> : <VscPinned size={20} />}
             </Box>
             <Typography variant='subtitle2' component='h6' className='title'>
-              {note.title}
+              {!note.title && !note.body ? 'Empty Note' : note.title}
             </Typography>
             <p className='body'>{note.body}</p>
           </Paper>
@@ -62,6 +66,7 @@ const AllNotes = () => {
           </div>
         </aside>
       )}
+      {numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>
   )
 }

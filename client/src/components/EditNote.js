@@ -3,7 +3,6 @@ import { RxDrawingPinFilled } from 'react-icons/rx'
 import { MdDelete } from 'react-icons/md'
 import { Button, Box, Input, Stack, FormControl } from '@mui/material'
 // local import
-import Alert from './Alert'
 import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
 
