@@ -2,6 +2,11 @@ import React, { useReducer, useContext } from 'react'
 import axios from 'axios'
 import reducer from './reducer'
 
+// get values from local storage
+const notes = localStorage.getItem('notes')
+const totalNotes = localStorage.getItem('totalNotes')
+const numOfPages = localStorage.getItem('numOfPages')
+
 const initialState = {
   isLoading: false,
   showAlert: false,
@@ -12,10 +17,10 @@ const initialState = {
   title: '',
   body: '',
   pinned: false,
-  notes: [],
-  totalNotes: 0,
+  notes: notes ? JSON.parse(notes) : [],
+  totalNotes: totalNotes,
   page: 1,
-  numOfPages: 1,
+  numOfPages: numOfPages,
 }
 
 // config headers for post request
@@ -49,6 +54,12 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'HANDLE_CHANGE', payload: { name, value } })
   }
 
+  const setNotesToLocalStorage = ({ notes, totalNotes, numOfPages }) => {
+    localStorage.setItem('notes', JSON.stringify(notes))
+    localStorage.setItem('totalNotes', totalNotes)
+    localStorage.setItem('numOfPages', numOfPages)
+  }
+
   const createNote = async (note) => {
     try {
       await axios.post('/api/v1/notes', note, config)
@@ -74,6 +85,7 @@ const AppProvider = ({ children }) => {
           numOfPages,
         },
       })
+      setNotesToLocalStorage({ notes, totalNotes, numOfPages })
     } catch (error) {
       console.log(error)
     }

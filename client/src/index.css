@@ -6,7 +6,7 @@
 
 :root {
   /* colors */
-  --primary-100: #dce5e6;
+  --primary-100: #e6e8e8;
   --primary-500: #a4a7a7;
 
   /* rest of the colors */
@@ -69,4 +69,12 @@ code {
 }
 .loading-center {
   margin: 0 auto;
+}
+
+.searchbar form {
+  display: flex;
+  align-items: center;
+}
+.searchbar input {
+  margin-left: 10px;
 }
