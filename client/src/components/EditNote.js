@@ -1,5 +1,6 @@
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
+import { MdDelete } from 'react-icons/md'
 import { Button, Box, Input, Stack, FormControl } from '@mui/material'
 // local import
 import Alert from './Alert'
@@ -7,7 +8,7 @@ import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
 
 const EditNote = ({ handleClose }) => {
-  const { editNote, showAlert, handleChange, title, body, pinned } = useAppContext()
+  const { editNote, deleteNote, handleChange, title, body, pinned } = useAppContext()
 
   const handlePinned = (e) => {
     // handle pinned note
@@ -61,8 +62,8 @@ const EditNote = ({ handleClose }) => {
 
           <Box className='button-container'>
             <Button type='submit'>Save Changes</Button>
+            <MdDelete size={20} className='delete-icon' onClick={deleteNote} />
           </Box>
-          {showAlert && <Alert />}
         </FormControl>
       </form>
     </Wrapper>

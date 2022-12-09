@@ -35,3 +35,12 @@ export const updateNote = async (req, res) => {
     throw new ErrorResponse(`No note with id ${id}`, 404)
   }
 }
+
+// @desc    Delete Note
+// @route   DELETE /api/v1/notes/:id
+export const deleteNote = async (req, res) => {
+  const { id } = req.params
+  const note = await Note.findByIdAndDelete({ _id: id })
+  res.status(200).json({ msg: 'Success! Note removed' })
+  if (!note) throw new ErrorResponse(`No note with id ${id}`, 404)
+}

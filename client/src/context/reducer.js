@@ -95,6 +95,24 @@ const reducer = (state, { type, payload }) => {
         alertText: msg,
       }
     }
+    case 'DELETE_NOTE_SUCCESS': {
+      return {
+        ...state,
+        showAlert: true,
+        alertType: 'success',
+        alertText: 'Note binned!',
+      }
+    }
+
+    case 'DELETE_NOTE_ERROR': {
+      const { msg } = payload
+      return {
+        ...state,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: msg,
+      }
+    }
 
     default:
       throw new Error(`no such action : ${type}`)

@@ -25,6 +25,10 @@ const Wrapper = styled.section`
   .button-container {
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
+  }
+  .delete-icon {
+    margin-right: 15px;
   }
 `
 

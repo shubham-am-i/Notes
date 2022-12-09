@@ -19,7 +19,7 @@ const Wrapper = styled.section`
     overflow: hidden;
     border-radius: 7px;
     box-shadow: none;
-    border: 0.95px solid lightgrey;
+    border: 1px solid lightgrey;
   }
   .title {
     word-wrap: break-word;

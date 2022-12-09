@@ -105,6 +105,18 @@ const AppProvider = ({ children }) => {
     clearAlert()
   }
 
+  const deleteNote = async () => {
+    const { editNoteId } = state
+    try {
+      await axios.delete(`/api/v1/notes/${editNoteId}`, config)
+      dispatch({ type: 'DELETE_NOTE_SUCCESS' })
+      getNotes()
+    } catch (error) {
+      dispatch({ type: 'DELETE_NOTE_ERROR', payload: { msg: error.response.data.msg } })
+    }
+    clearAlert()
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -116,6 +128,7 @@ const AppProvider = ({ children }) => {
         handleChange,
         clearValues,
         editNote,
+        deleteNote,
       }}
     >
       {children}
