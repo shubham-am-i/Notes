@@ -16,7 +16,7 @@ const Wrapper = styled.section`
     background: transparent;
     border-color: transparent;
     width: 50px;
-    height: 40px;
+    height: 35px;
     font-weight: 700;
     font-size: 1.25rem;
     color: var(--primary-500);
