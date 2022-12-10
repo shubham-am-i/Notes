@@ -15,6 +15,7 @@ import connectDB from './config/db.js'
 // import routers
 import noteRouter from './routes/noteRoutes.js'
 dotenv.config()
+connectDB()
 const app = express()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -38,10 +39,4 @@ app.use(notFound)
 app.use(errorHandler)
 
 const port = process.env.PORT || 5000
-
-const bootstrap = async () => {
-  await connectDB()
-  app.listen(port, () => console.log(`Server is running on port ${port}`.yellow.bold))
-}
-
-bootstrap()
+app.listen(port, () => console.log(`Server is running on port ${port}`.yellow.bold))
