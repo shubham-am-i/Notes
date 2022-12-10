@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
 import { MdDelete } from 'react-icons/md'
@@ -7,7 +8,7 @@ import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
 
 const EditNote = ({ handleClose }) => {
-  const { deleteNote, handleChange, title, body, pinned } = useAppContext()
+  const { deleteNote, handleChange, title, body, pinned, updatedAt } = useAppContext()
 
   // handle pinned note
   // input is directly updated on context state using handleChange()
@@ -30,6 +31,7 @@ const EditNote = ({ handleClose }) => {
   return (
     <Wrapper>
       <form className='form form-modal' onSubmit={handleSubmit}>
+        <span className='date'>edited - {moment(updatedAt).format('MMM Do, h:mm a')}</span>
         <Stack direction='row'>
           <Input
             name='title'

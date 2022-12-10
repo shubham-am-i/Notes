@@ -22,6 +22,7 @@ const initialState = {
   page: 1,
   numOfPages: numOfPages,
   search: '',
+  updatedAt: '',
 }
 
 // config headers for post request

@@ -16,6 +16,11 @@ const Wrapper = styled.section`
     width: 100%;
     height: 100%;
   }
+  .date {
+    color: #6495ed;
+    text-align: start;
+    margin-bottom: 8px;
+  }
   .pin-box {
     position: absolute;
     right: 10px;

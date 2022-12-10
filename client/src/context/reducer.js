@@ -25,6 +25,7 @@ const reducer = (state, { type, payload }) => {
         pinned: false,
         editNoteId: '',
         isEditing: false,
+        updatedAt: '',
       }
       return {
         ...state,
@@ -67,7 +68,7 @@ const reducer = (state, { type, payload }) => {
 
     case 'SET_EDIT_NOTE': {
       const note = state.notes.find((note) => note._id === payload.id)
-      const { _id, title, body, pinned } = note
+      const { _id, title, body, pinned, updatedAt } = note
       return {
         ...state,
         isEditing: true,
@@ -75,6 +76,7 @@ const reducer = (state, { type, payload }) => {
         title,
         body,
         pinned,
+        updatedAt,
       }
     }
 
