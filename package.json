@@ -1,11 +1,13 @@
 {
   "name": "notekeeper",
   "version": "1.0.0",
-  "description": "full stack note keeper app",
+  "description": "Full stack note keeper build with React & Node.",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-production": "npm run build-client && npm install",
+    "build-client": "cd client && npm install && npm run build",
+    "install-dependencies": "npm install && cd client && npm install",
     "start": "nodemon server.js",
     "server": "nodemon server",
     "client": "npm start --prefix client",
