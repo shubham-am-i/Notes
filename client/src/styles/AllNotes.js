@@ -72,6 +72,18 @@ const Wrapper = styled.section`
     text-align: center;
   }
 
+  /* dark mode */
+  .notes-container .paper.dark {
+    background: #555;
+  }
+
+  .heading-title.dark,
+  .paper.dark .pin-box,
+  .paper.dark .title,
+  .paper.dark .body {
+    color: #fff;
+  }
+
   @media screen and (max-width: 480px) {
     padding: 0;
     .notes-container {

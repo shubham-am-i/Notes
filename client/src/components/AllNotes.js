@@ -11,6 +11,7 @@ import Wrapper from '../styles/AllNotes'
 import EditNote from './EditNote'
 import Loading from './Loading'
 import Alert from './Alert'
+import { useTheme } from '../context/themeContext'
 
 const AllNotes = () => {
   const [open, setOpen] = React.useState(false)
@@ -27,6 +28,7 @@ const AllNotes = () => {
     isLoading,
     showAlert,
   } = useAppContext()
+  const { mode } = useTheme()
 
   // handle modal open
   const handleOpen = (id) => {
@@ -62,7 +64,7 @@ const AllNotes = () => {
   return (
     <Wrapper>
       {/* heading */}
-      <Typography variant='body1' className='heading-title'>
+      <Typography variant='body1' className={`heading-title ${mode}`}>
         Notes
       </Typography>
       {/* display loader while fetching */}
@@ -71,7 +73,7 @@ const AllNotes = () => {
       ) : (
         <Stack className='notes-container'>
           {notes.map((note, index) => (
-            <Paper key={index} className='paper' onClick={() => handleOpen(note._id)}>
+            <Paper key={index} className={`paper ${mode}`} onClick={() => handleOpen(note._id)}>
               <Box className='pin-box'>
                 {note.pinned ? <RxDrawingPinFilled size={20} /> : <VscPinned size={20} />}
               </Box>

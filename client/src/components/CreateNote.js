@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
-import { Button, Box, Stack, InputBase } from '@mui/material'
+import { Button, Box, Stack, InputBase, Input } from '@mui/material'
 // local import
 import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
+import { useTheme } from '../context/themeContext'
 
 // initial local state values
 const initialValues = {
@@ -16,6 +17,7 @@ const initialValues = {
 const CreateNote = () => {
   const [values, setValues] = useState(initialValues)
   const { createNote } = useAppContext()
+  const { mode } = useTheme()
 
   // handle pinned note
   const handlePinned = (e) => {
@@ -39,13 +41,15 @@ const CreateNote = () => {
   }
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit} className='form'>
+      <form onSubmit={handleSubmit} className={`form ${mode}`}>
         <Stack direction='row'>
-          <InputBase
+          <Input
             name='title'
             placeholder='Title'
             multiline
+            disableUnderline={true}
             fullWidth
+            className='input'
             value={values.title}
             onChange={handleChange}
           />
@@ -58,16 +62,20 @@ const CreateNote = () => {
           </Box>
         </Stack>
 
-        <InputBase
+        <Input
           name='body'
           placeholder='Take a note...'
+          disableUnderline={true}
           multiline
+          className='input'
           value={values.body}
           onChange={handleChange}
         />
 
         <Box className='button-container'>
-          <Button type='submit'>Create Note</Button>
+          <Button type='submit' className='button'>
+            Create Note
+          </Button>
         </Box>
       </form>
     </Wrapper>

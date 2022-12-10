@@ -35,6 +35,23 @@ const Wrapper = styled.section`
     margin-right: 15px;
   }
 
+  /* dark mode */
+  .form.dark {
+    background: #16161d;
+  }
+
+  .form.dark .pin-box,
+  .form.dark .input,
+  .form.dark .input,
+  .form.dark .button {
+    color: #fff;
+  }
+
+  .paper.dark .pin-box,
+  .paper.dark .title,
+  .paper.dark .body {
+  }
+
   @media screen and (max-width: 480px) {
     .form {
       width: 100%;

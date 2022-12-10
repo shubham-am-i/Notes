@@ -34,7 +34,7 @@ const config = {
 
 const AppContext = React.createContext()
 
-const AppProvider = ({ children }) => {
+export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const displayAlert = () => {
@@ -162,7 +162,6 @@ const AppProvider = ({ children }) => {
   )
 }
 
-const useAppContext = () => {
+export const useAppContext = () => {
   return useContext(AppContext)
 }
-export { AppProvider, useAppContext }

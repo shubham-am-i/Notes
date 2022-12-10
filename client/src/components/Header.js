@@ -4,10 +4,12 @@ import { Typography } from '@mui/material'
 import Wrapper from '../styles/Header'
 import { Stack } from '@mui/system'
 import { useAppContext } from '../context/appContext'
+import { useTheme } from '../context/themeContext'
 
 const Header = () => {
   const [localSearch, setLocalSearch] = useState('')
   const { handleChange } = useAppContext() // access context value
+  const { color } = useTheme()
   const date = new Date()
 
   const logo =
@@ -28,7 +30,7 @@ const Header = () => {
   // eslint-disable-next-line
   const optimizedDebounce = useMemo(() => debounce(), [])
   return (
-    <Wrapper>
+    <Wrapper style={{ backgroundColor: color }}>
       <Stack direction='row' style={{ alignItems: 'center' }}>
         <img src={logo} className='logo' alt='logo' />
         <Typography variant='h5' className='main-heading'>
