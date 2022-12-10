@@ -9,6 +9,8 @@ const Wrapper = styled.section`
     margin-bottom: 8px;
   }
   .notes-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     flex-direction: row;
     flex-wrap: wrap;
     row-gap: 1.5em;
@@ -68,6 +70,23 @@ const Wrapper = styled.section`
     overflow-y: scroll;
     border-radius: 8px;
     text-align: center;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    .notes-container {
+      grid-template-columns: 1fr 1fr;
+    }
+    .paper {
+      min-width: 150px;
+      max-width: 310px;
+      height: fit-content;
+      max-height: 260px;
+      overflow: hidden;
+      border-radius: 7px;
+      box-shadow: none;
+      border: 1px solid lightgrey;
+    }
   }
 `
 

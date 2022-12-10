@@ -50,5 +50,10 @@ const Wrapper = styled.section`
     background: var(--primary-500);
     color: var(--white);
   }
+
+  @media screen and (max-width: 480px) {
+    justify-content: flex-start;
+    gap: 0;
+  }
 `
 export default Wrapper

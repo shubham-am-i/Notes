@@ -29,7 +29,9 @@ const Header = () => {
     <Wrapper>
       <Stack direction='row' style={{ alignItems: 'center' }}>
         <img src={logo} className='logo' alt='logo' />
-        <Typography variant='h5'>React Notes</Typography>
+        <Typography variant='h5' className='main-heading'>
+          React Notes
+        </Typography>
       </Stack>
 
       <input

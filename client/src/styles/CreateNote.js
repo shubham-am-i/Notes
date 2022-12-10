@@ -29,6 +29,12 @@ const Wrapper = styled.section`
   .delete-icon {
     margin-right: 15px;
   }
+
+  @media screen and (max-width: 480px) {
+    .form {
+      width: 100%;
+    }
+  }
 `
 
 export default Wrapper

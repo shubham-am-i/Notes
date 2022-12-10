@@ -6,10 +6,6 @@ const Wrapper = styled.section`
   align-items: center;
   border-bottom: 1px solid lightgray;
 
-  @media screen and (max-width: 480px) {
-    padding: 0.4% 2%;
-  }
-
   .search {
     width: 50%;
     height: 42px;
@@ -27,6 +23,19 @@ const Wrapper = styled.section`
   }
   .date {
     margin-left: 20%;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 1% 3%;
+    .main-heading {
+      font-size: 16px;
+    }
+    .search {
+      margin-left: auto;
+    }
+    span {
+      display: none;
+    }
   }
 `
 
