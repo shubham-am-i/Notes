@@ -30,11 +30,8 @@ const AllNotes = () => {
     setOpen(true)
   }
   const handleClose = (e) => {
-    // console.dir(e.target.textContent)
-    // console.log(e.target.parentElement.nodeName)
     if (e.target.textContent === 'Save Changes') {
       editNote()
-      // setTimeout(() => setOpen(false), 500)
       setOpen(false)
     }
     if (e.target.parentElement.nodeName === 'DIV') return
@@ -44,6 +41,7 @@ const AllNotes = () => {
 
   useEffect(() => {
     getNotes()
+    // eslint-disable-next-line
   }, [page, search])
 
   if (totalNotes === 0) {

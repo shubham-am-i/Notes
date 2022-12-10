@@ -7,7 +7,7 @@ import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
 
 const EditNote = ({ handleClose }) => {
-  const { editNote, deleteNote, handleChange, title, body, pinned } = useAppContext()
+  const { deleteNote, handleChange, title, body, pinned } = useAppContext()
 
   const handlePinned = (e) => {
     // handle pinned note

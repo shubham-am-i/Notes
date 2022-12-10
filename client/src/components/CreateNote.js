@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
-import { Button, Form, Box, Input, Stack, FormControl, InputBase } from '@mui/material'
+import { Button, Box, Stack, InputBase } from '@mui/material'
 // local import
-import Alert from './Alert'
 import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
 
