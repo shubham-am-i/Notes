@@ -48,5 +48,9 @@ npm run server
 # Create frontend prod build
 npm run build-client
 ```
+
+# Note
+Currently supports Mobile Devices between 320px to 480px only.
+
 ![2022-12-10 (1)](https://user-images.githubusercontent.com/88419331/206851796-699dd8e7-4681-4487-a5b6-ed6a227e5d94.png)
 
