@@ -1,7 +1,7 @@
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
 import { MdDelete } from 'react-icons/md'
-import { Button, Box, Input, Stack, FormControl } from '@mui/material'
+import { Button, Box, Input, Stack } from '@mui/material'
 // local import
 import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
@@ -22,48 +22,42 @@ const EditNote = ({ handleClose }) => {
     handleChange({ name, value })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    editNote()
-    handleClose()
-  }
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit}>
-        <FormControl sx={{ boxShadow: 3 }} className='form form-modal'>
-          <Stack direction='row'>
-            <Input
-              name='title'
-              placeholder='Title'
-              disableUnderline={true}
-              multiline
-              fullWidth
-              value={title}
-              onChange={handleNoteInput}
-            />
-
-            <Box className='pin-box'>
-              {pinned ? (
-                <RxDrawingPinFilled size={20} name='pinned' onClick={handlePinned} />
-              ) : (
-                <VscPinned size={20} name='pinned' onClick={handlePinned} />
-              )}
-            </Box>
-          </Stack>
+      <form className='form form-modal'>
+        <Stack direction='row'>
           <Input
-            name='body'
-            placeholder='Take a note...'
+            name='title'
+            placeholder='Title'
             disableUnderline={true}
             multiline
-            value={body}
+            fullWidth
+            style={{ marginBottom: '10px' }}
+            value={title}
             onChange={handleNoteInput}
           />
 
-          <Box className='button-container'>
-            <Button type='submit'>Save Changes</Button>
-            <MdDelete size={20} className='delete-icon' onClick={deleteNote} />
+          <Box className='pin-box'>
+            {pinned ? (
+              <RxDrawingPinFilled size={20} name='pinned' onClick={handlePinned} />
+            ) : (
+              <VscPinned size={20} name='pinned' onClick={handlePinned} />
+            )}
           </Box>
-        </FormControl>
+        </Stack>
+        <Input
+          name='body'
+          placeholder='Take a note...'
+          disableUnderline={true}
+          multiline
+          value={body}
+          onChange={handleNoteInput}
+        />
+
+        <Box className='button-container'>
+          <Button type='submit'>Save Changes</Button>
+          <MdDelete size={20} className='delete-icon' onClick={deleteNote} />
+        </Box>
       </form>
     </Wrapper>
   )

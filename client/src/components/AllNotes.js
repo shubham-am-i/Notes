@@ -9,19 +9,28 @@ import PageBtnContainer from './PageBtnContainer'
 
 const AllNotes = () => {
   const [open, setOpen] = React.useState(false)
-  const { getNotes, editNote, notes, totalNotes, setEditNote, clearValues, numOfPages, page } =
-    useAppContext()
+  const {
+    getNotes,
+    editNote,
+    notes,
+    totalNotes,
+    setEditNote,
+    clearValues,
+    numOfPages,
+    page,
+    search,
+  } = useAppContext()
 
   const handleOpen = (id) => {
     setEditNote(id)
     setOpen(true)
   }
   const handleClose = (e) => {
-    // console.dir(e.target.parentElement)
+    // console.dir(e.target.textContent)
     // console.log(e.target.parentElement.nodeName)
-    if (e.target.parentElement.textContent === 'Save Changes') {
+    if (e.target.textContent === 'Save Changes') {
       editNote()
-      setOpen(false)
+      setTimeout(() => setOpen(false), 1000)
     }
     if (e.target.parentElement.nodeName === 'DIV') return
     clearValues()
@@ -30,7 +39,7 @@ const AllNotes = () => {
 
   useEffect(() => {
     getNotes()
-  }, [page])
+  }, [page, search])
 
   if (totalNotes === 0) {
     return (
@@ -46,8 +55,8 @@ const AllNotes = () => {
         Notes
       </Typography>
       <Stack className='notes-container'>
-        {notes.map((note) => (
-          <Paper className='paper' onClick={() => handleOpen(note._id)}>
+        {notes.map((note, index) => (
+          <Paper key={index} className='paper' onClick={() => handleOpen(note._id)}>
             <Box className='pin-box'>
               {note.pinned ? <RxDrawingPinFilled size={20} /> : <VscPinned size={20} />}
             </Box>

@@ -64,6 +64,8 @@ const Wrapper = styled.section`
     width: 80vw;
     margin-top: -250px;
     max-width: 500px;
+    max-height: 300px;
+    overflow-y: scroll;
     border-radius: 8px;
     text-align: center;
   }

@@ -9,14 +9,12 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     /* todo - background color */
   }
   .form-modal {
     width: 100%;
     height: 100%;
-  }
-  Input {
-    margin-bottom: 10px;
   }
   .pin-box {
     position: absolute;

@@ -21,6 +21,7 @@ const initialState = {
   totalNotes: totalNotes,
   page: 1,
   numOfPages: numOfPages,
+  search: '',
 }
 
 // config headers for post request
@@ -72,10 +73,13 @@ const AppProvider = ({ children }) => {
   }
 
   const getNotes = async () => {
-    const { page } = state
+    const { page, search } = state
+
+    let url = `/api/v1/notes?page=${page}`
+    if (search) url += `&search=${search}`
     try {
       dispatch({ type: 'GET_NOTES_BEGIN' })
-      const { data } = await axios.get(`/api/v1/notes?page=${page}`)
+      const { data } = await axios.get(url)
       const { notes, totalNotes, numOfPages } = data
       dispatch({
         type: 'GET_NOTES_SUCCESS',

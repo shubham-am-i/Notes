@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
-import { Button, Form, Box, Input, Stack, FormControl, Snackbar } from '@mui/material'
+import { Button, Form, Box, Input, Stack, FormControl, InputBase } from '@mui/material'
 // local import
 import Alert from './Alert'
 import Wrapper from '../styles/CreateNote'
@@ -38,40 +38,40 @@ const CreateNote = () => {
   }
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit}>
-        <FormControl sx={{ boxShadow: 3 }} className='form'>
-          <Stack direction='row'>
-            <Input
-              name='title'
-              placeholder='Title'
-              disableUnderline={true}
-              multiline
-              fullWidth
-              value={values.title}
-              onChange={handleChange}
-            />
-
-            <Box className='pin-box'>
-              {values.pinned ? (
-                <RxDrawingPinFilled size={20} onClick={handlePinned} />
-              ) : (
-                <VscPinned size={20} onClick={handlePinned} />
-              )}
-            </Box>
-          </Stack>
-          <Input
-            name='body'
-            placeholder='Take a note...'
-            disableUnderline={true}
+      <form onSubmit={handleSubmit} className='form'>
+        {/* <FormControl sx={{ boxShadow: 3 }} className='form'> */}
+        <Stack direction='row'>
+          <InputBase
+            name='title'
+            placeholder='Title'
+            // disableunderline
             multiline
-            value={values.body}
+            fullWidth
+            value={values.title}
             onChange={handleChange}
           />
 
-          <Box className='button-container'>
-            <Button type='submit'>Create Note</Button>
+          <Box className='pin-box'>
+            {values.pinned ? (
+              <RxDrawingPinFilled size={20} onClick={handlePinned} />
+            ) : (
+              <VscPinned size={20} onClick={handlePinned} />
+            )}
           </Box>
-        </FormControl>
+        </Stack>
+        <InputBase
+          name='body'
+          placeholder='Take a note...'
+          // disableunderline
+          multiline
+          value={values.body}
+          onChange={handleChange}
+        />
+
+        <Box className='button-container'>
+          <Button type='submit'>Create Note</Button>
+        </Box>
+        {/* </FormControl> */}
       </form>
       {showAlert && <Alert />}
     </Wrapper>

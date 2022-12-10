@@ -15,7 +15,13 @@ export const createNote = async (req, res) => {
 // @route   GET /api/v1/notes/
 // @access  Public
 export const getAllNotes = async (req, res) => {
-  let result = Note.find({}).sort('-pinned -createdAt')
+  const { search } = req.query
+
+  const query = {}
+
+  if (search) query.title = { $regex: search, $options: 'i' }
+
+  let result = Note.find(query).sort('-pinned -createdAt')
 
   // setup pagination
   const page = +req.query.page || 1
@@ -25,7 +31,7 @@ export const getAllNotes = async (req, res) => {
   result = result.skip(skip).limit(limit)
 
   const notes = await result
-  const totalNotes = await Note.countDocuments()
+  const totalNotes = await Note.countDocuments(query)
   const numOfPages = Math.ceil(totalNotes / limit)
   res.status(200).json({
     totalNotes,
