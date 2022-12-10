@@ -118,7 +118,6 @@ const reducer = (state, { type, payload }) => {
     case 'CHANGE_PAGE': {
       return {
         ...state,
-
         page: payload.page,
       }
     }

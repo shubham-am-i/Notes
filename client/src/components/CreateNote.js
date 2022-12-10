@@ -6,6 +6,7 @@ import { Button, Box, Stack, InputBase } from '@mui/material'
 import Wrapper from '../styles/CreateNote'
 import { useAppContext } from '../context/appContext'
 
+// initial local state values
 const initialValues = {
   title: '',
   body: '',
@@ -16,8 +17,8 @@ const CreateNote = () => {
   const [values, setValues] = useState(initialValues)
   const { createNote } = useAppContext()
 
+  // handle pinned note
   const handlePinned = (e) => {
-    // handle pinned note
     setValues({ ...values, pinned: !values.pinned })
   }
 
@@ -25,6 +26,7 @@ const CreateNote = () => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
 
+  // handle form input
   const handleSubmit = (e) => {
     e.preventDefault()
     const note = {
@@ -38,18 +40,15 @@ const CreateNote = () => {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit} className='form'>
-        {/* <FormControl sx={{ boxShadow: 3 }} className='form'> */}
         <Stack direction='row'>
           <InputBase
             name='title'
             placeholder='Title'
-            // disableunderline
             multiline
             fullWidth
             value={values.title}
             onChange={handleChange}
           />
-
           <Box className='pin-box'>
             {values.pinned ? (
               <RxDrawingPinFilled size={20} onClick={handlePinned} />
@@ -58,10 +57,10 @@ const CreateNote = () => {
             )}
           </Box>
         </Stack>
+
         <InputBase
           name='body'
           placeholder='Take a note...'
-          // disableunderline
           multiline
           value={values.body}
           onChange={handleChange}
@@ -70,7 +69,6 @@ const CreateNote = () => {
         <Box className='button-container'>
           <Button type='submit'>Create Note</Button>
         </Box>
-        {/* </FormControl> */}
       </form>
     </Wrapper>
   )

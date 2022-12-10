@@ -14,8 +14,10 @@ import { notFound, errorHandler } from './middlewares/errorMiddleware.js'
 import connectDB from './config/db.js'
 // import routers
 import noteRouter from './routes/noteRoutes.js'
-dotenv.config()
-connectDB()
+
+dotenv.config() //configure .env
+connectDB() // connect with Atlas
+
 const app = express()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

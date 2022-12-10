@@ -9,8 +9,9 @@ import { useAppContext } from '../context/appContext'
 const EditNote = ({ handleClose }) => {
   const { deleteNote, handleChange, title, body, pinned } = useAppContext()
 
+  // handle pinned note
+  // input is directly updated on context state using handleChange()
   const handlePinned = (e) => {
-    // handle pinned note
     const name = 'pinned'
     const value = !pinned
     handleChange({ name, value })

@@ -14,7 +14,6 @@ const Wrapper = styled.section`
     font-size: 16px;
     border-radius: 6px;
     border-style: none;
-    /* border: 1px solid lightgray; */
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   }
   .logo {

@@ -6,25 +6,23 @@ import Wrapper from '../styles/PageBtnContainer'
 const PageBtnContainer = () => {
   const { numOfPages, page, changePage } = useAppContext()
 
+  // create array from total no. of pages
   const pages = Array.from({ length: numOfPages }, (_, index) => {
     return index + 1
   })
+
+  // handle prev & next buttons click
   const nextPage = () => {
     let newPage = page + 1
-    if (newPage > numOfPages) {
-      return
-      // newPage = numOfPages
-    }
+    if (newPage > numOfPages) return
     changePage(newPage)
   }
   const prevPage = () => {
     let newPage = page - 1
-    if (newPage < 1) {
-      return
-      // newPage = 1
-    }
+    if (newPage < 1) return
     changePage(newPage)
   }
+
   return (
     <Wrapper>
       <button className='prev-btn' onClick={prevPage}>

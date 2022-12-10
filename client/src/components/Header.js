@@ -7,12 +7,13 @@ import { useAppContext } from '../context/appContext'
 
 const Header = () => {
   const [localSearch, setLocalSearch] = useState('')
-  const { handleChange } = useAppContext()
+  const { handleChange } = useAppContext() // access context value
   const date = new Date()
 
   const logo =
     'https://charitism-campaigns.s3.ap-south-1.amazonaws.com/09022427-f267-4b58-a9a9-e66cd88a1e8b.png'
 
+  // using debouncing, we are preventing function call on every keystroke
   const debounce = () => {
     let timeoutID
     return (e) => {
@@ -23,6 +24,7 @@ const Header = () => {
       }, 1000)
     }
   }
+  // Using useMemo() function is running only once
   // eslint-disable-next-line
   const optimizedDebounce = useMemo(() => debounce(), [])
   return (

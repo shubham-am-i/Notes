@@ -1,11 +1,14 @@
+// native imports
 import React, { useEffect } from 'react'
+// external imports
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
 import { Box, Paper, Stack, Typography } from '@mui/material'
+// local imports
 import { useAppContext } from '../context/appContext'
+import PageBtnContainer from './PageBtnContainer'
 import Wrapper from '../styles/AllNotes'
 import EditNote from './EditNote'
-import PageBtnContainer from './PageBtnContainer'
 import Loading from './Loading'
 import Alert from './Alert'
 
@@ -25,12 +28,15 @@ const AllNotes = () => {
     showAlert,
   } = useAppContext()
 
+  // handle modal open
   const handleOpen = (id) => {
     setEditNote(id)
     setOpen(true)
   }
+  // handle modal close
   const handleClose = (e) => {
     if (e.target.textContent === 'Save Changes') {
+      console.log('first')
       editNote()
       setOpen(false)
     }
@@ -44,6 +50,7 @@ const AllNotes = () => {
     // eslint-disable-next-line
   }, [page, search])
 
+  // display message if there are no notes to display and return
   if (totalNotes === 0) {
     return (
       <Wrapper>
@@ -54,9 +61,11 @@ const AllNotes = () => {
 
   return (
     <Wrapper>
+      {/* heading */}
       <Typography variant='body1' className='heading-title'>
         Notes
       </Typography>
+      {/* display loader while fetching */}
       {isLoading ? (
         <Loading center />
       ) : (
@@ -75,6 +84,7 @@ const AllNotes = () => {
         </Stack>
       )}
 
+      {/* modal mounting */}
       {open && (
         <aside className='modal-container' onClick={handleClose}>
           <div className='modal'>
@@ -82,6 +92,7 @@ const AllNotes = () => {
           </div>
         </aside>
       )}
+      {/* display alert and pagination component */}
       {showAlert && <Alert />}
       {numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>
