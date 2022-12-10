@@ -22,9 +22,13 @@ const EditNote = ({ handleClose }) => {
     handleChange({ name, value })
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <Wrapper>
-      <form className='form form-modal'>
+      <form className='form form-modal' onSubmit={handleSubmit}>
         <Stack direction='row'>
           <Input
             name='title'

@@ -15,7 +15,7 @@ const initialValues = {
 
 const CreateNote = () => {
   const [values, setValues] = useState(initialValues)
-  const { createNote, showAlert } = useAppContext()
+  const { createNote } = useAppContext()
 
   const handlePinned = (e) => {
     // handle pinned note
@@ -73,7 +73,6 @@ const CreateNote = () => {
         </Box>
         {/* </FormControl> */}
       </form>
-      {showAlert && <Alert />}
     </Wrapper>
   )
 }

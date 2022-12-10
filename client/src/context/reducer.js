@@ -51,7 +51,7 @@ const reducer = (state, { type, payload }) => {
     }
 
     case 'GET_NOTES_BEGIN': {
-      return { ...state, isLoading: false }
+      return { ...state, isLoading: true }
     }
 
     case 'GET_NOTES_SUCCESS': {
@@ -118,6 +118,7 @@ const reducer = (state, { type, payload }) => {
     case 'CHANGE_PAGE': {
       return {
         ...state,
+
         page: payload.page,
       }
     }

@@ -44,7 +44,7 @@ const AppProvider = ({ children }) => {
   const clearAlert = () => {
     setTimeout(() => {
       dispatch({ type: 'CLEAR_ALERT' })
-    }, 3000)
+    }, 4000)
   }
 
   const clearValues = () => {
