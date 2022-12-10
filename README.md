@@ -12,8 +12,7 @@ Project in Action - [React Notes](https://notes-hfhj.onrender.com/)
 - Utilize "express-async-errors" package (eliminate use of try/catch blocks)
 - Implement custom Error-Handling with personalized status codes
 - Persist data in local storage
-- Setup nice charts and cards
-- Implement search/filter functionality along with pagination
+- Implement search functionality along with pagination
 
 ## Usage
 
