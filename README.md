@@ -13,6 +13,7 @@ Project in Action - [React Notes](https://notes-hfhj.onrender.com/)
 - Implement custom Error-Handling with personalized status codes
 - Persist data in local storage
 - Implement search functionality along with pagination
+- view last edit & light/dark themes
 
 ## Usage
 
