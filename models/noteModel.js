@@ -1,19 +1,20 @@
 import mongoose from 'mongoose'
 
 const NoteSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      unique: true,
-      maxlength: 100,
+    {
+        title: {
+            type: String,
+            unique: true,
+            maxlength: 100,
+            required: true,
+        },
+        body: String,
+        pinned: {
+            type: Boolean,
+            default: false,
+        },
     },
-    body: String,
-    pinned: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  { timestamps: true }
+    {timestamps: true}
 )
 
 const Note = mongoose.model('Note', NoteSchema)

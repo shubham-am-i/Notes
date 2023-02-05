@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import moment from 'moment'
 import { VscPinned } from 'react-icons/vsc'
 import { RxDrawingPinFilled } from 'react-icons/rx'
@@ -69,4 +70,4 @@ const EditNote = ({ handleClose }) => {
     </Wrapper>
   )
 }
-export default EditNote
+export default memo(EditNote)
