@@ -17,7 +17,7 @@ const initialValues = {
 const CreateNote = () => {
     const [values, setValues] = useState(initialValues)
     const [isDescriptionRequired, setIsDescriptionRequired] = useState(false)
-    const {createNote, displayAlert} = useAppContext()
+    const {createNote} = useAppContext()
     const {mode} = useTheme()
 
     // handle pinned note
@@ -61,6 +61,7 @@ const CreateNote = () => {
                         multiline
                         disableUnderline={true}
                         fullWidth
+                        required
                         className='input'
                         value={values.title}
                         onChange={handleChange}
