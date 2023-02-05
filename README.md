@@ -4,6 +4,9 @@
 
 Project in Action - [React Notes](https://notes-hfhj.onrender.com/)
 
+![React Notes 1](https://user-images.githubusercontent.com/88419331/216833389-aa652d73-a819-444d-b1d4-8b3390d0fad7.png)
+
+
 ## Features
 
 - Use ES6 Modules on the back-end
@@ -14,6 +17,7 @@ Project in Action - [React Notes](https://notes-hfhj.onrender.com/)
 - Persist data in local storage
 - Implement search functionality along with pagination
 - view last edit & light/dark themes
+- use event bubbling on parent node to listen for events
 
 ## Usage
 
@@ -50,7 +54,6 @@ npm run build-client
 ```
 
 # Note
-Currently supports Mobile Devices between 320px to 480px only.
+For responsive layouts -  Mobile Devices between 320px to 480px only.
 
-![2022-12-10 (1)](https://user-images.githubusercontent.com/88419331/206851796-699dd8e7-4681-4487-a5b6-ed6a227e5d94.png)
 
